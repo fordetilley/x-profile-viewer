@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,24 +8,71 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="topbar">
+    <h2>X Analyzer</h2>
+    <span>Profile Dashboard</span>
+  </header>
+
   <main class="container">
-    <h1>X Profile Analyzer</h1>
-    <p>Analyze an X profile by entering its username.</p>
+    <section class="hero">
+      <h1>X Profile Analyzer</h1>
+      <p>Explore profile statistics and recent activity.</p>
 
-    <form id="analyze-form">
-      <input
-        type="text"
-        id="username"
-        placeholder="@username"
-        required
-      >
-      <button type="submit">Analyze</button>
-    </form>
-
-    <section id="results">
-      <p>Your analysis will appear here.</p>
+      <form id="analyze-form">
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter X username"
+          required
+        >
+        <button type="submit">Analyze</button>
+      </form>
     </section>
+
+    <section id="dashboard" hidden>
+      <div class="profile-card">
+        <div class="avatar" id="avatar">X</div>
+        <div>
+          <h2 id="profile-name">Display Name</h2>
+          <p id="profile-handle">@username</p>
+          <p id="bio">Sample profile biography.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <p>Followers</p>
+          <h3 id="followers">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <p>Following</p>
+          <h3 id="following">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <p>Total Posts</p>
+          <h3 id="posts-count">0</h3>
+        </article>
+      </div>
+
+      <section class="content-card">
+        <h2>Recent Posts</h2>
+        <div id="recent-posts"></div>
+      </section>
+
+      <section class="content-card">
+        <h2>Profile Insights</h2>
+        <div id="insights"></div>
+      </section>
+    </section>
+
+    <p id="message">Enter a username to preview the dashboard.</p>
   </main>
+
+  <footer>
+    X Profile Analyzer · Demo version
+  </footer>
 
   <script src="script.js"></script>
 </body>
