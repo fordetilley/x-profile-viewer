@@ -1,49 +1,399 @@
+/* =========================
+   1. GLOBAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #090b10;
+  --surface: #10141c;
+  --surface-hover: #161c27;
+  --border: #232a36;
+  --text: #f1f5f9;
+  --muted: #8994a5;
+  --accent: #5684ff;
+  --accent-hover: #7096ff;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #17202a;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(63, 95, 180, 0.13),
+      transparent 55%
+    ),
+    var(--background);
+  color: var(--text);
+  line-height: 1.6;
 }
+
+/* =========================
+   2. NAVIGATION
+========================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 6%;
+  border-bottom: 1px solid var(--border);
+  background: rgba(9, 11, 16, 0.85);
+}
+
+.topbar h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.topbar span {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* =========================
+   3. MAIN CONTAINER
+========================= */
 
 .container {
-  max-width: 700px;
-  margin: 80px auto;
-  padding: 24px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px;
 }
 
-h1 {
-  font-size: 32px;
+.hero {
+  margin-bottom: 30px;
 }
+
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -2px;
+  font-weight: 750;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* =========================
+   4. SEARCH FORM
+========================= */
 
 form {
   display: flex;
-  gap: 10px;
-  margin: 24px 0;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+form:focus-within {
+  border-color: var(--accent);
 }
 
 input {
   flex: 1;
   min-width: 0;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 13px 14px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #687386;
 }
 
 button {
-  padding: 12px 20px;
+  padding: 12px 23px;
   border: none;
-  border-radius: 6px;
-  background: #17202a;
+  border-radius: 8px;
+  background: var(--accent);
   color: white;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 button:hover {
-  background: #34495e;
+  background: var(--accent-hover);
+  transform: translateY(-1px);
 }
 
-#results {
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* =========================
+   5. PROFILE CARD
+========================= */
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  margin-bottom: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #477bff, #8b5cf6);
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-card h2 {
+  margin: 0 0 2px;
+  font-size: 21px;
+  letter-spacing: -0.5px;
+}
+
+.profile-card p {
+  margin: 4px 0;
+}
+
+#profile-handle {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#bio {
+  margin-top: 10px;
+  color: #c2cad6;
+  font-size: 14px;
+}
+
+/* =========================
+   6. STATISTICS
+========================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.stat-card:hover {
+  background: var(--surface-hover);
+  border-color: #354157;
+  transform: translateY(-2px);
+}
+
+.stat-card p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+/* =========================
+   7. CONTENT SECTIONS
+========================= */
+
+.content-card {
+  padding: 26px;
+  margin-bottom: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.content-card h2 {
+  margin: 0 0 16px;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+}
+
+.post {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  color: #cbd3df;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.post:first-child {
+  padding-top: 4px;
+}
+
+.post:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+#insights p {
+  position: relative;
+  margin: 12px 0;
+  padding-left: 18px;
+  color: #cbd3df;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+#insights p::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* =========================
+   8. STATUS MESSAGE
+========================= */
+
+#message {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =========================
+   9. FOOTER
+========================= */
+
+footer {
+  padding: 25px 20px;
+  border-top: 1px solid var(--border);
+  color: #687386;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* =========================
+   10. RESPONSIVE DESIGN
+========================= */
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    padding: 18px 20px;
+  }
+
+  .topbar span {
+    font-size: 10px;
+  }
+
+  .container {
+    padding: 38px 16px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1.3px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  form {
+    flex-direction: column;
+    padding: 8px;
+  }
+
+  input {
+    padding: 14px 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .profile-card {
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .avatar {
+    width: 54px;
+    height: 54px;
+    font-size: 22px;
+  }
+
+  .profile-card h2 {
+    font-size: 18px;
+  }
+
+  #bio {
+    overflow-wrap: anywhere;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-card h3 {
+    font-size: 26px;
+  }
+
+  .content-card {
+    padding: 20px;
+  }
 }
